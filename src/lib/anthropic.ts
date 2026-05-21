@@ -16,11 +16,11 @@ const sys = `You are Halo, a review reply drafting assistant. You write short, w
 
 Hard rules:
 - Stay under 80 words.
-- Match the supplied brand voice EXACTLY — sign-offs, cadence, vocabulary.
+- Match the supplied brand voice EXACTLY, including sign-offs, cadence, vocabulary.
 - Never use em dashes. Use a comma or period instead.
-- For 1–2 star reviews: own it, name a concrete next step, offer a private channel (email or DM). Do not be defensive.
+- For 1 to 2 star reviews: own it, name a concrete next step, offer a private channel (email or DM). Do not be defensive.
 - For 3 star reviews: acknowledge the gap, state the fix in motion.
-- For 4–5 star reviews: be specific. Mention something from the review verbatim. Never generic ("thanks for the great review!").
+- For 4 to 5 star reviews: be specific. Mention something from the review verbatim. Never generic ("thanks for the great review!").
 - Never invent facts about the business. If the reviewer mentions a name you don't know, refer to "the team" instead.
 
 Return ONLY the reply body. No subject line, no preamble.`;
@@ -33,12 +33,12 @@ function fallback(review: Review, business: Business): string {
   const signoff = signoffMatch ? signoffMatch[1].trim().replace(/"$/, '') : 'the team';
 
   if (sentiment === 'positive') {
-    return `${author}, thank you for taking the time to share this. We'll pass it to the crew today. Hope to see you back soon. — ${signoff}`;
+    return `${author}, thank you for taking the time to share this. We'll pass it to the crew today. Hope to see you back soon. - ${signoff}`;
   }
   if (sentiment === 'neutral') {
-    return `${author}, fair feedback. We're already on the fix and it'll be tighter the next time you swing by. Appreciate you naming it clearly. — ${signoff}`;
+    return `${author}, fair feedback. We're already on the fix and it'll be tighter the next time you swing by. Appreciate you naming it clearly. - ${signoff}`;
   }
-  return `${author}, this isn't the experience we want anyone leaving with. I'd like to make it right personally. Please email me directly and I'll handle it from there. — ${signoff}`;
+  return `${author}, this isn't the experience we want anyone leaving with. I'd like to make it right personally. Please email me directly and I'll handle it from there. - ${signoff}`;
 }
 
 export async function draftReply(review: Review, business: Business): Promise<string> {

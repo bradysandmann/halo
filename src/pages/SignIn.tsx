@@ -112,7 +112,7 @@ export function SignIn() {
                 </Button>
 
                 <p className="pt-2 text-[12px] text-ink-muted">
-                  By signing in you agree this is a portfolio demo. Use a real email — links expire in 60 minutes.
+                  By signing in you agree this is a portfolio demo. Use a real email. Links expire in 60 minutes.
                 </p>
               </form>
             )}
